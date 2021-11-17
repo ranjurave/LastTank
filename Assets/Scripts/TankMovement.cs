@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class TankMovement : MonoBehaviour {
     public float speed = 8;
-    public float turnSpeed = 5;
+    public float turnSpeed = 0.5f;
     private Rigidbody rigidbody;
     private TankControls tankControls;
     private InputAction movement;
@@ -31,7 +31,11 @@ public class TankMovement : MonoBehaviour {
         localVelocity.x = 0;
         rigidbody.velocity = transform.TransformDirection(localVelocity);
 
-        rigidbody.AddTorque(Vector3.up * movementDirection.x * turnSpeed);
+        //rigidbody.AddTorque(Vector3.up * movementDirection.x * turnSpeed);
+        Quaternion currentRotation = transform.rotation;
+        Vector3 rot = currentRotation.eulerAngles;
+        Quaternion tankRot = Quaternion.Euler(new Vector3(rot.x, rot.y + turnSpeed * movementDirection.x, rot.z));
+        rigidbody.MoveRotation(tankRot);
 
     }
 
