@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour
 {
-    float shootForce = 10f;
+    PlayerTank playerTank;
+    EnemyTank enemyTank;
+    float shootForce = 50f;
     Rigidbody rigidbodyMissile;
     Vector3 direction;
 

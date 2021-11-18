@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class TankMovement : MonoBehaviour {
+using UnityEngine.SceneManagement;
+public class PlayerTank : MonoBehaviour {
     public float speed = 8;
     public float turnSpeed = 0.5f;
     private Rigidbody rigidbody;
     private TankControls tankControls;
     private InputAction movement;
+    public int health = 100;
 
     private void Awake() {
         tankControls = new TankControls();
@@ -23,9 +25,10 @@ public class TankMovement : MonoBehaviour {
         rigidbody = GetComponent<Rigidbody>();
     }
     private void FixedUpdate() {
+
         //Debug.Log("movement value" + movement.ReadValue<Vector2>());
         Vector2 movementDirection = movement.ReadValue<Vector2>();
-        rigidbody.AddRelativeForce(new Vector3( Vector3.forward.x, 0, Vector3.forward.z) * movementDirection.y * speed) ;
+        rigidbody.AddRelativeForce(new Vector3(Vector3.forward.x, 0, Vector3.forward.z) * movementDirection.y * speed);
 
         Vector3 localVelocity = transform.InverseTransformDirection(rigidbody.velocity);
         localVelocity.x = 0;
@@ -36,8 +39,28 @@ public class TankMovement : MonoBehaviour {
         Vector3 rot = currentRotation.eulerAngles;
         Quaternion tankRot = Quaternion.Euler(new Vector3(rot.x, rot.y + turnSpeed * movementDirection.x, rot.z));
         rigidbody.MoveRotation(tankRot);
-
     }
 
+    public void Damage(int damage) {
+        health -= damage;
+    }
 
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.transform.gameObject.CompareTag("Enemy")) {
+            //Debug.Log("MISSILE....");
+            Damage(50);
+            if (health <= 0) {
+                Destroy(collision.gameObject);
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other) {
+        if (other.transform.gameObject.CompareTag("Missile")) {
+            //Debug.Log("MISSILE....");
+            Damage(10);
+            if (health <= 0) {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+        }
+    }
 }

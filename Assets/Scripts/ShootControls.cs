@@ -8,29 +8,17 @@ public class ShootControls : MonoBehaviour {
     [SerializeField] GameObject barrel;
     [SerializeField] GameObject shootpoint;
     [SerializeField] GameObject missile;
-    [SerializeField] Slider turretSlider;
-    [SerializeField] Slider barrelSlider;
-
     [SerializeField] float turretRotateLimit = 90;
     [SerializeField] float barrelRotateLimit = 45;
-    void Start() {
-        turretSlider.onValueChanged.AddListener(delegate {
-            RotateTurret();
-        });
-        barrelSlider.onValueChanged.AddListener(delegate {
-            RotateBarrel();
-        });
-    }
 
-    void RotateTurret() {
-        turret.transform.localEulerAngles = new Vector3(0, turretSlider.value * turretRotateLimit, 0);
+    public void RotateTurret(float sliderValue) {
+        turret.transform.localEulerAngles = new Vector3(0, sliderValue * turretRotateLimit, 0);
     }
-    void RotateBarrel() {
-        barrel.transform.localEulerAngles = new Vector3(barrelSlider.value * -barrelRotateLimit, 0, 0);
+    public void RotateBarrel(float sliderValue) {
+        barrel.transform.localEulerAngles = new Vector3(sliderValue * -barrelRotateLimit, 0, 0);
     }
 
     public void Shoot() {
         Instantiate(missile, shootpoint.transform.position, shootpoint.transform.rotation);
-        //rigidbodyMissile.AddForce(shootpoint.transform.forward * 20, ForceMode.Impulse);
     }
 }

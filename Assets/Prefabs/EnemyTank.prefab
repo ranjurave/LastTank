@@ -175,9 +175,10 @@ GameObject:
   - component: {fileID: 4688478858786115528}
   - component: {fileID: 676404789}
   - component: {fileID: 676404790}
-  - component: {fileID: 676404793}
+  - component: {fileID: 7012974317411368439}
+  - component: {fileID: 6243073272259564671}
   m_Layer: 0
-  m_Name: Tank
+  m_Name: EnemyTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,7 +229,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.09, y: 1.7428045, z: 3.56}
   m_Center: {x: 0, y: 0.9114022, z: 0}
---- !u!114 &676404793
+--- !u!195 &7012974317411368439
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3770050075250961299}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 2.3
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.7
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &6243073272259564671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -237,11 +260,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 3770050075250961299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb274700bde3f364b885946e16c270b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 22c779fdd8538ba45ab9ec8754c243dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  turnSpeed: 0.25
+  player: {fileID: 0}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  projectile: {fileID: 5035432736701630269, guid: 2357e611f0a0df540b295c0bdc5080df, type: 3}
+  shootPoint: {fileID: 6475671797121689892}
+  health: 20
+  walkpoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 100
+  timeBetweenAttacks: 1
+  sightRange: 35
+  attackRange: 24
 --- !u!1 &5282287391373248236
 GameObject:
   m_ObjectHideFlags: 0
