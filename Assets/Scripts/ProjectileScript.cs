@@ -4,28 +4,20 @@ using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour
 {
+    float shootForce = 10f;
     Rigidbody rigidbodyMissile;
     Vector3 direction;
 
-    private void OnEnable() {
+    private void Start() {
         rigidbodyMissile = GetComponent<Rigidbody>();
-        rigidbodyMissile.AddForce(transform.forward * 10f, ForceMode.Impulse);
-
-        //if (dir == Vector3.zero) {
-        //    transform.rotation = Quaternion.Slerp(
-        //        transform.rotation,
-        //        Quaternion.LookRotation(dir),
-        //        Time.deltaTime * 10
-        //    );
-        //transform.rotation = Quaternion.LookRotation(dir);
-        //}
+        rigidbodyMissile.AddForce(transform.forward * shootForce, ForceMode.Impulse);
     }
-    void FixedUpdate() {
-        direction = rigidbodyMissile.velocity;
-        Debug.Log(direction);
-        float angle = Mathf.Atan2(direction.z, direction.y) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.right);
-    
+    void Update() {
+        //TODO rotate shell in moving direction
+        //direction = rigidbodyMissile.velocity;
+        //float angleZ = Mathf.Atan2(direction.z, direction.y) * Mathf.Rad2Deg;
+        //float angleY = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+        //transform.rotation = Quaternion.Euler(angleZ+90, angleY, transform.rotation.z);
     }
     private void OnTriggerEnter(Collider other) {
         Destroy(gameObject);

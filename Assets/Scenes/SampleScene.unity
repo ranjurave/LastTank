@@ -198,11 +198,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 10896588}
   m_CullTransparentMesh: 1
---- !u!1 &40919614 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6909058287229737183, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
-  m_PrefabInstance: {fileID: 6495353170901728169}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &88601850
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +492,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1045967990}
+      - m_Target: {fileID: 1577749885}
         m_TargetAssemblyTypeName: ShootControls, Assembly-CSharp
         m_MethodName: Shoot
         m_Mode: 1
@@ -547,6 +542,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457488596}
   m_CullTransparentMesh: 1
+--- !u!1 &461824644 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3140143064072465759, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
+  m_PrefabInstance: {fileID: 6495353170901728169}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &566077910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,31 +1089,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 14.62, y: 0, z: 0}
---- !u!1 &1045967986 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3770050075250961299, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
-  m_PrefabInstance: {fileID: 6495353170901728169}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1045967990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045967986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a68ff98866b322d4385adfad01b3a8b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turret: {fileID: 1577749883}
-  barrel: {fileID: 40919614}
-  shootpoint: {fileID: 6495353170901728170}
-  missile: {fileID: 5035432736701630269, guid: 2357e611f0a0df540b295c0bdc5080df, type: 3}
-  turretSlider: {fileID: 1322951434}
-  barrelSlider: {fileID: 1632504003}
-  turretRotateLimit: 90
-  barrelRotateLimit: 45
 --- !u!1 &1219686939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1441,11 +1416,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441783160}
   m_CullTransparentMesh: 1
---- !u!1 &1577749883 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 378872340038166859, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
+--- !u!114 &1577749885 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1577749885, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
   m_PrefabInstance: {fileID: 6495353170901728169}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68ff98866b322d4385adfad01b3a8b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1632504001
 GameObject:
   m_ObjectHideFlags: 0
@@ -1862,25 +1843,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 676404793, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
-      propertyPath: turnSpeed
-      value: 0.25
+    - target: {fileID: 676404789, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 163411732895678847, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+    - target: {fileID: 1577749885, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
+      propertyPath: shootpoint
       value: 
-      objectReference: {fileID: 2100000, guid: a4c4911b884c9394eab472646638cd1c, type: 2}
-    - target: {fileID: 1368424324569740028, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      objectReference: {fileID: 461824644}
+    - target: {fileID: 1577749885, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
+      propertyPath: barrelSlider
       value: 
-      objectReference: {fileID: 2100000, guid: a4c4911b884c9394eab472646638cd1c, type: 2}
+      objectReference: {fileID: 1632504003}
+    - target: {fileID: 1577749885, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
+      propertyPath: turretSlider
+      value: 
+      objectReference: {fileID: 1322951434}
     - target: {fileID: 3770050075250961299, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
       propertyPath: m_Name
       value: Tank
       objectReference: {fileID: 0}
     - target: {fileID: 4688478858786115528, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4688478858786115528, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1922,17 +1907,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6827457255270319751, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
+    - target: {fileID: 6475671797121689892, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
---- !u!1 &6495353170901728170 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3917505727802872179, guid: f7733e2994a8aba4a935021aa49445f3, type: 3}
-  m_PrefabInstance: {fileID: 6495353170901728169}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6989868864029990082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1950,7 +1930,7 @@ PrefabInstance:
       objectReference: {fileID: 676404792}
     - target: {fileID: 6989868863947978850, guid: 2c38ad4d01a83b342a2ad820a4c6cafd, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6989868863947978850, guid: 2c38ad4d01a83b342a2ad820a4c6cafd, type: 3}
       propertyPath: m_LocalPosition.x

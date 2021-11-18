@@ -31,5 +31,6 @@ public class ShootControls : MonoBehaviour {
 
     public void Shoot() {
         Instantiate(missile, shootpoint.transform.position, shootpoint.transform.rotation);
+        //rigidbodyMissile.AddForce(shootpoint.transform.forward * 20, ForceMode.Impulse);
     }
 }
