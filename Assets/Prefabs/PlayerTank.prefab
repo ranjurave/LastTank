@@ -49,8 +49,6 @@ MonoBehaviour:
   barrel: {fileID: 6909058287229737183}
   shootpoint: {fileID: 0}
   missile: {fileID: 5035432736701630269, guid: 2357e611f0a0df540b295c0bdc5080df, type: 3}
-  turretSlider: {fileID: 0}
-  barrelSlider: {fileID: 0}
   turretRotateLimit: 90
   barrelRotateLimit: 45
 --- !u!1 &565757906694626857
@@ -240,8 +238,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb274700bde3f364b885946e16c270b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turret: {fileID: 378872340038166859}
+  barrel: {fileID: 6909058287229737183}
+  shootpoint: {fileID: 3140143064072465759}
+  missile: {fileID: 5035432736701630269, guid: 2357e611f0a0df540b295c0bdc5080df, type: 3}
   speed: 8
   turnSpeed: 0.25
+  turretSensitivity: 102.14
+  barrelSensitivity: 100
+  health: 100
 --- !u!1 &5282287391373248236
 GameObject:
   m_ObjectHideFlags: 0

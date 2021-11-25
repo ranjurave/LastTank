@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour
 {
-    PlayerTank playerTank;
-    EnemyTank enemyTank;
+    //PlayerTank playerTank;
+    //EnemyTank enemyTank;
+    //Vector3 direction;
     float shootForce = 50f;
     Rigidbody rigidbodyMissile;
-    Vector3 direction;
 
     private void Start() {
         rigidbodyMissile = GetComponent<Rigidbody>();

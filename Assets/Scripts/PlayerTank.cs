@@ -4,37 +4,61 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class PlayerTank : MonoBehaviour {
+    [SerializeField] GameObject turret;
+    [SerializeField] GameObject barrel;
+    [SerializeField] GameObject shootpoint;
+    [SerializeField] GameObject missile;
     public float speed = 8;
     public float turnSpeed = 0.5f;
+    public float turretSensitivity = 50f;
+    public float barrelSensitivity = 50f;
     private Rigidbody rigidbody;
     private TankControls tankControls;
-    private InputAction movement;
+    private InputAction movementCtrl;
+    private InputAction barrelCtrl;
     public int health = 100;
 
     private void Awake() {
         tankControls = new TankControls();
     }
+
     private void OnEnable() {
-        movement = tankControls.Player.Move;
-        movement.Enable();
+        movementCtrl = tankControls.Tank.TankMove;
+        barrelCtrl = tankControls.Tank.TankBarrel;
+        movementCtrl.Enable();
+        barrelCtrl.Enable();
     }
     private void OnDisable() {
-        movement.Disable();
+        movementCtrl.Disable();
     }
     private void Start() {
         rigidbody = GetComponent<Rigidbody>();
     }
     private void FixedUpdate() {
+        TankMovement();
+        BarrelMovement();
+    }
 
-        //Debug.Log("movement value" + movement.ReadValue<Vector2>());
-        Vector2 movementDirection = movement.ReadValue<Vector2>();
+    void BarrelMovement() {
+        Vector2 barrelDirection = barrelCtrl.ReadValue<Vector2>();
+        float turretRot = turret.transform.localRotation.y;
+
+        float turretNewRot = turretRot + barrelDirection.x;
+        float barrelRot = barrel.transform.localRotation.x;
+        float barrelNewRot =barrelRot + barrelDirection.y;
+
+        turret.transform.localEulerAngles = new Vector3(0, turretNewRot * turretSensitivity, 0);
+        barrel.transform.localEulerAngles = new Vector3(Mathf.Clamp( barrelNewRot * barrelSensitivity,-10,45 ) * -1, 0, 0);
+    }
+
+    void TankMovement() {
+        Vector2 movementDirection = movementCtrl.ReadValue<Vector2>();
         rigidbody.AddRelativeForce(new Vector3(Vector3.forward.x, 0, Vector3.forward.z) * movementDirection.y * speed);
 
         Vector3 localVelocity = transform.InverseTransformDirection(rigidbody.velocity);
         localVelocity.x = 0;
         rigidbody.velocity = transform.TransformDirection(localVelocity);
 
-        //rigidbody.AddTorque(Vector3.up * movementDirection.x * turnSpeed);
         Quaternion currentRotation = transform.rotation;
         Vector3 rot = currentRotation.eulerAngles;
         Quaternion tankRot = Quaternion.Euler(new Vector3(rot.x, rot.y + turnSpeed * movementDirection.x, rot.z));
@@ -54,6 +78,7 @@ public class PlayerTank : MonoBehaviour {
             }
         }
     }
+
     private void OnTriggerEnter(Collider other) {
         if (other.transform.gameObject.CompareTag("Missile")) {
             //Debug.Log("MISSILE....");
@@ -62,5 +87,11 @@ public class PlayerTank : MonoBehaviour {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
+    }
+
+    public void Shoot() {
+        rigidbody.AddForce(Vector3.forward * -1.5f, ForceMode.Impulse);
+        rigidbody.AddForce(Vector3.up * -1f, ForceMode.Impulse);
+        Instantiate(missile, shootpoint.transform.position, shootpoint.transform.rotation);
     }
 }

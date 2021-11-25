@@ -49,8 +49,6 @@ MonoBehaviour:
   barrel: {fileID: 6909058287229737183}
   shootpoint: {fileID: 0}
   missile: {fileID: 5035432736701630269, guid: 2357e611f0a0df540b295c0bdc5080df, type: 3}
-  turretSlider: {fileID: 0}
-  barrelSlider: {fileID: 0}
   turretRotateLimit: 90
   barrelRotateLimit: 45
 --- !u!1 &565757906694626857
@@ -179,7 +177,7 @@ GameObject:
   - component: {fileID: 6243073272259564671}
   m_Layer: 0
   m_Name: EnemyTank
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

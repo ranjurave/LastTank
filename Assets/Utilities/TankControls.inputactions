@@ -1,14 +1,22 @@
 {
-    "name": "PlayerControls",
+    "name": "TankControls",
     "maps": [
         {
-            "name": "Player",
-            "id": "03652f02-32ad-482d-926c-b30dad0bd72c",
+            "name": "Tank",
+            "id": "facc7d1c-4ab8-4ece-9149-5ccf466f7527",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "TankMove",
                     "type": "Value",
-                    "id": "d522eb64-5635-4014-930a-62521a302a93",
+                    "id": "635d034a-6886-4e24-8592-ae4362702998",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TankBarrel",
+                    "type": "Value",
+                    "id": "3f593670-486b-4ae4-aef5-493fa7ab5b20",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
@@ -16,68 +24,79 @@
             ],
             "bindings": [
                 {
+                    "name": "",
+                    "id": "2a7bc4bd-c542-4727-bfac-a5242d228fb7",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TankMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "2D Vector",
-                    "id": "d82e5950-570f-4fdb-a2ca-e2dda0675c9f",
+                    "id": "2291b8a2-27ca-4f9c-85cc-e5c53c7fc594",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "TankMove",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "up",
-                    "id": "4e11c8ff-7730-4561-85b6-db0ed127c730",
+                    "id": "a6047ab4-90f5-47c2-a65c-54b728c5c1df",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "TankMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "513eaea1-0b42-4e45-a5f1-275435480386",
+                    "id": "22b6761f-7fa6-4f45-b07e-fb045f18c22b",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "TankMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "84d22436-fc45-4d43-b034-4a6544f924fd",
+                    "id": "816b0bbe-b12c-47a1-84c4-fd19b0d34c3a",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "TankMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "53b458e1-36a8-44d9-84f6-1ec3ee510696",
+                    "id": "084529be-fc60-43d6-a772-11a5d398e906",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "TankMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "9d39eb67-202a-4a52-8a80-59be96fb5342",
-                    "path": "<Gamepad>/leftStick",
+                    "id": "34f93d37-5866-40cc-a8f0-14b93aa1c6d2",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "TankBarrel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

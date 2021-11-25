@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyTank : MonoBehaviour {
-    NavMeshAgent agent;
     [SerializeField] Transform player;
+    NavMeshAgent agent;
+    Rigidbody rigidbody;
     public LayerMask groundMask, playerMask;
     public GameObject projectile;
     public Transform shootPoint;
@@ -25,9 +26,10 @@ public class EnemyTank : MonoBehaviour {
     private void Awake() {
         player = FindObjectOfType<PlayerTank>().transform;
         agent = GetComponent<NavMeshAgent>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
-void Update() {
+    void Update() {
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
@@ -93,10 +95,12 @@ void Update() {
         if (other.transform.gameObject.CompareTag("Missile")) {
             //Debug.Log("MISSILE....");
             Damage(10);
+            //rigidbody.AddForce(Vector3.up * 500);
             if (health <= 0) {
                 Destroy(gameObject);
             }
         }
+
     }
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
