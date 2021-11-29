@@ -10,13 +10,17 @@ public class PlayerTank : MonoBehaviour {
     [SerializeField] GameObject missile;
     public float speed = 8;
     public float turnSpeed = 0.5f;
-    public float turretSensitivity = 50f;
-    public float barrelSensitivity = 50f;
+    public float turretSensitivity = 45f;
+    public float barrelSensitivity = 35f;
     private Rigidbody rigidbody;
     private TankControls tankControls;
     private InputAction movementCtrl;
     private InputAction barrelCtrl;
     public int health = 100;
+    Vector2 barrelDirection;
+
+    public CameraRecoil recoil;
+    int test;
 
     private void Awake() {
         tankControls = new TankControls();
@@ -35,20 +39,28 @@ public class PlayerTank : MonoBehaviour {
         rigidbody = GetComponent<Rigidbody>();
     }
     private void FixedUpdate() {
+        ManageInput();
         TankMovement();
-        BarrelMovement();
+        BarrelRotate();
+    }
+    void ManageInput() {
+        barrelDirection = barrelCtrl.ReadValue<Vector2>();
+
     }
 
-    void BarrelMovement() {
-        Vector2 barrelDirection = barrelCtrl.ReadValue<Vector2>();
+    void BarrelRotate() {
+        Debug.Log(barrelDirection);
         float turretRot = turret.transform.localRotation.y;
 
-        float turretNewRot = turretRot + barrelDirection.x;
         float barrelRot = barrel.transform.localRotation.x;
-        float barrelNewRot =barrelRot + barrelDirection.y;
 
-        turret.transform.localEulerAngles = new Vector3(0, turretNewRot * turretSensitivity, 0);
-        barrel.transform.localEulerAngles = new Vector3(Mathf.Clamp( barrelNewRot * barrelSensitivity,-10,45 ) * -1, 0, 0);
+        //turret.transform.Rotate(new Vector3(0, Mathf.Clamp( turretNewRot * turretSensitivity, -90, 90), 0));
+        float turretNewRot = Mathf.Clamp((turretRot + barrelDirection.x) * turretSensitivity, -90, 90);
+        turret.transform.localEulerAngles = new Vector3(0, turretNewRot, 0);
+        //barrel.transform.Rotate(new Vector3(Mathf.Clamp(barrelNewRot * barrelSensitivity, -10, 45) * -1, 0, 0));
+        float barrelNewRot = Mathf.Clamp( barrelRot + (barrelDirection.y)*barrelSensitivity, -10, 45);
+        barrel.transform.localEulerAngles = new Vector3(barrelNewRot * -1, 0, 0);
+
     }
 
     void TankMovement() {
@@ -90,8 +102,8 @@ public class PlayerTank : MonoBehaviour {
     }
 
     public void Shoot() {
-        rigidbody.AddForce(Vector3.forward * -1.5f, ForceMode.Impulse);
-        rigidbody.AddForce(Vector3.up * -1f, ForceMode.Impulse);
+        //rigidbody.AddForce(Vector3.up * 50f);
         Instantiate(missile, shootpoint.transform.position, shootpoint.transform.rotation);
+        recoil.RecoilFire();
     }
 }
