@@ -9,6 +9,7 @@ public class PlayerTank : MonoBehaviour {
     [SerializeField] GameObject barrel;
     [SerializeField] GameObject shootpoint;
     [SerializeField] GameObject missile;
+    [SerializeField] ParticleSystem muzzleFlash;
     public float speed = 8;
     public float turnSpeed = 0.5f;
     public float turretSensitivity = 45f;
@@ -105,7 +106,7 @@ public class PlayerTank : MonoBehaviour {
     }
 
     public void Shoot() {
-        //rigidbody.AddForce(Vector3.up * 50f);
+        muzzleFlash.Play();
         Instantiate(missile, shootpoint.transform.position, shootpoint.transform.rotation);
         cameraRecoil.RecoilFire();
         tankRecoil.RecoilFire();
