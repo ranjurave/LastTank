@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+
 public class PlayerTank : MonoBehaviour {
     [SerializeField] GameObject turret;
     [SerializeField] GameObject barrel;
@@ -19,7 +20,8 @@ public class PlayerTank : MonoBehaviour {
     public int health = 100;
     Vector2 barrelDirection;
 
-    public CameraRecoil recoil;
+    public CameraRecoil cameraRecoil;
+    public TankRecoil tankRecoil;
     int test;
 
     private void Awake() {
@@ -58,7 +60,7 @@ public class PlayerTank : MonoBehaviour {
         float turretNewRot = Mathf.Clamp((turretRot + barrelDirection.x) * turretSensitivity, -90, 90);
         turret.transform.localEulerAngles = new Vector3(0, turretNewRot, 0);
         //barrel.transform.Rotate(new Vector3(Mathf.Clamp(barrelNewRot * barrelSensitivity, -10, 45) * -1, 0, 0));
-        float barrelNewRot = Mathf.Clamp( barrelRot + (barrelDirection.y)*barrelSensitivity, -10, 45);
+        float barrelNewRot = Mathf.Clamp(barrelRot + (barrelDirection.y) * barrelSensitivity, -10, 45);
         barrel.transform.localEulerAngles = new Vector3(barrelNewRot * -1, 0, 0);
 
     }
@@ -93,6 +95,7 @@ public class PlayerTank : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.transform.gameObject.CompareTag("Missile")) {
+            Vibrator.Vibrate(20);
             //Debug.Log("MISSILE....");
             Damage(10);
             if (health <= 0) {
@@ -104,6 +107,8 @@ public class PlayerTank : MonoBehaviour {
     public void Shoot() {
         //rigidbody.AddForce(Vector3.up * 50f);
         Instantiate(missile, shootpoint.transform.position, shootpoint.transform.rotation);
-        recoil.RecoilFire();
+        cameraRecoil.RecoilFire();
+        tankRecoil.RecoilFire();
+        Vibrator.Vibrate(5);
     }
 }
