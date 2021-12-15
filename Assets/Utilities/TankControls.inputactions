@@ -19,7 +19,7 @@
                     "id": "3f593670-486b-4ae4-aef5-493fa7ab5b20",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Hold"
                 }
             ],
             "bindings": [

@@ -10,6 +10,9 @@ public class PlayerTank : MonoBehaviour {
     [SerializeField] GameObject shootpoint;
     [SerializeField] GameObject missile;
     [SerializeField] ParticleSystem muzzleFlash;
+    //[SerializeField] Rigidbody turretRB;
+    //[SerializeField] Rigidbody barrelRB;
+
     public float speed = 8;
     public float turnSpeed = 0.5f;
     public float turretSensitivity = 45f;
@@ -48,21 +51,22 @@ public class PlayerTank : MonoBehaviour {
     }
     void ManageInput() {
         barrelDirection = barrelCtrl.ReadValue<Vector2>();
-
     }
 
     void BarrelRotate() {
-        Debug.Log(barrelDirection);
-        float turretRot = turret.transform.localRotation.y;
+        //Debug.Log(barrelDirection);
+        float barrelCurrentRotation = barrel.transform.localRotation.x;
+        float turretCurrentRotation = turret.transform.localRotation.y;
 
-        float barrelRot = barrel.transform.localRotation.x;
+        if (barrelDirection.x > 0 || barrelDirection.x<0) {
+            float turretNewRot = Mathf.Clamp((turretCurrentRotation + barrelDirection.x) * turretSensitivity, -90, 90);
+            turret.transform.localEulerAngles = new Vector3(0, turretNewRot, 0);
+        }
 
-        //turret.transform.Rotate(new Vector3(0, Mathf.Clamp( turretNewRot * turretSensitivity, -90, 90), 0));
-        float turretNewRot = Mathf.Clamp((turretRot + barrelDirection.x) * turretSensitivity, -90, 90);
-        turret.transform.localEulerAngles = new Vector3(0, turretNewRot, 0);
-        //barrel.transform.Rotate(new Vector3(Mathf.Clamp(barrelNewRot * barrelSensitivity, -10, 45) * -1, 0, 0));
-        float barrelNewRot = Mathf.Clamp(barrelRot + (barrelDirection.y) * barrelSensitivity, -10, 45);
-        barrel.transform.localEulerAngles = new Vector3(barrelNewRot * -1, 0, 0);
+        if (barrelDirection.y > 0 || barrelDirection.y < 0) {
+            float barrelNewRot = Mathf.Clamp(turretCurrentRotation + (barrelDirection.y) * barrelSensitivity, -10, 45);
+            barrel.transform.localEulerAngles = new Vector3(barrelNewRot * -1, 0, 0);
+        }
 
     }
 

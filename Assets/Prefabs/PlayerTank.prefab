@@ -274,6 +274,8 @@ MonoBehaviour:
   shootpoint: {fileID: 3140143064072465759}
   missile: {fileID: 5035432736701630269, guid: 2357e611f0a0df540b295c0bdc5080df, type: 3}
   muzzleFlash: {fileID: 7371025137683080066}
+  turretRB: {fileID: 0}
+  barrelRB: {fileID: 0}
   speed: 8
   turnSpeed: 0.25
   turretSensitivity: 102.14
