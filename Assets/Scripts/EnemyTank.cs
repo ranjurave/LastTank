@@ -17,7 +17,7 @@ public class EnemyTank : MonoBehaviour {
     bool walkPointSet;
     public float walkPointRange = 100f;
     //Attacking
-    public float timeBetweenAttacks =1;
+    public float timeBetweenAttacks = 3;
     bool alreadyAttacked = false;
     //States
     public float sightRange = 35, attackRange = 24;

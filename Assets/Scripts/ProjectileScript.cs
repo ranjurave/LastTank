@@ -7,21 +7,34 @@ public class ProjectileScript : MonoBehaviour
     //PlayerTank playerTank;
     //EnemyTank enemyTank;
     //Vector3 direction;
+    [SerializeField] GameObject tankExplosion;
+    [SerializeField] GameObject mudExplosion;
     float shootForce = 50f;
     Rigidbody rigidbodyMissile;
+
 
     private void Start() {
         rigidbodyMissile = GetComponent<Rigidbody>();
         rigidbodyMissile.AddForce(transform.forward * shootForce, ForceMode.Impulse);
     }
-    void Update() {
-        //TODO rotate shell in moving direction
-        //direction = rigidbodyMissile.velocity;
-        //float angleZ = Mathf.Atan2(direction.z, direction.y) * Mathf.Rad2Deg;
-        //float angleY = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-        //transform.rotation = Quaternion.Euler(angleZ+90, angleY, transform.rotation.z);
-    }
+
     private void OnTriggerEnter(Collider other) {
+
+        Debug.Log(other.gameObject.tag);
+        if (other.gameObject.CompareTag("Ground")) {
+        GameObject explosionMud =  Instantiate(mudExplosion, transform.position, transform.rotation);
+        Destroy(explosionMud, 3);
+        }
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")) {
+        GameObject explosionBig = Instantiate(tankExplosion, transform.position, transform.rotation);
+            Destroy(explosionBig, 2);
+        }
+        Destroy(gameObject);
+        //mudExplosion.Play();
+        //Invoke("DestroyMissile", 1f);
+    }
+
+    void DestroyMissile() {
         Destroy(gameObject);
     }
 }

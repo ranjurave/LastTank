@@ -55,16 +55,16 @@ public class PlayerTank : MonoBehaviour {
 
     void BarrelRotate() {
         //Debug.Log(barrelDirection);
-        float barrelCurrentRotation = barrel.transform.localRotation.x;
-        float turretCurrentRotation = turret.transform.localRotation.y;
 
         if (barrelDirection.x > 0 || barrelDirection.x<0) {
+            float turretCurrentRotation = turret.transform.localRotation.y + barrelDirection.x;
             float turretNewRot = Mathf.Clamp((turretCurrentRotation + barrelDirection.x) * turretSensitivity, -90, 90);
             turret.transform.localEulerAngles = new Vector3(0, turretNewRot, 0);
         }
 
         if (barrelDirection.y > 0 || barrelDirection.y < 0) {
-            float barrelNewRot = Mathf.Clamp(turretCurrentRotation + (barrelDirection.y) * barrelSensitivity, -10, 45);
+            float barrelCurrentRotation = barrel.transform.localRotation.x + barrelDirection.y;
+            float barrelNewRot = Mathf.Clamp(barrelCurrentRotation + (barrelDirection.y) * barrelSensitivity, -10, 45);
             barrel.transform.localEulerAngles = new Vector3(barrelNewRot * -1, 0, 0);
         }
 
@@ -101,7 +101,7 @@ public class PlayerTank : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (other.transform.gameObject.CompareTag("Missile")) {
             Vibrator.Vibrate(20);
-            //Debug.Log("MISSILE....");
+            cameraRecoil.RecoilFire(3.0f,3.0f);
             Damage(10);
             if (health <= 0) {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -6,17 +6,14 @@ public class CameraRecoil : MonoBehaviour
 {
     Vector3 currentRotation;
     Vector3 targetRotation;
-    [SerializeField] float recoilX;
-    [SerializeField] float recoilY;
-    [SerializeField] float recoilZ;
+    [SerializeField] float recoilX = -0.5f;
+    [SerializeField] float recoilY = 0.5f;
+    [SerializeField] float recoilZ =0.5f;
 
-    [SerializeField] float snappiness;
-    [SerializeField] float returnSpeed;
+    [SerializeField] float snappiness = 30.0f;
+    [SerializeField] float returnSpeed = 20.0f;
 
-    void Start()
-    {
-        
-    }
+    //TODO different recoil for missile hit overload method
 
     // Update is called once per frame
     void Update()
@@ -28,5 +25,8 @@ public class CameraRecoil : MonoBehaviour
 
     public void RecoilFire() {
         targetRotation += new Vector3(recoilX, Random.Range(-recoilY, recoilY), Random.Range(-recoilZ, recoilZ));
+    }
+    public void RecoilFire(float _recoilY = 1.0f, float _recoilZ = 1.0f) {
+        targetRotation += new Vector3(recoilX, Random.Range(-_recoilY, _recoilY), Random.Range(-_recoilZ, _recoilZ));
     }
 }
