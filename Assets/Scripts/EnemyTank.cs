@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyTank : MonoBehaviour {
-    [SerializeField] Transform player;
+    Transform player;
     NavMeshAgent agent;
     Rigidbody rigidbody;
     public LayerMask groundMask, playerMask;
@@ -24,7 +24,7 @@ public class EnemyTank : MonoBehaviour {
     bool playerInSightRange, playerInAttackRange;
 
     private void Awake() {
-        player = FindObjectOfType<PlayerTank>().transform;
+        player = FindFirstObjectByType<PlayerTank>().transform;
         agent = GetComponent<NavMeshAgent>();
         rigidbody = GetComponent<Rigidbody>();
     }

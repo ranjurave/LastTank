@@ -10,8 +10,6 @@ public class PlayerTank : MonoBehaviour {
     [SerializeField] GameObject shootpoint;
     [SerializeField] GameObject missile;
     [SerializeField] ParticleSystem muzzleFlash;
-    //[SerializeField] Rigidbody turretRB;
-    //[SerializeField] Rigidbody barrelRB;
 
     public float speed = 8;
     public float turnSpeed = 0.5f;
