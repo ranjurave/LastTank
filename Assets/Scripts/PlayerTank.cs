@@ -72,9 +72,9 @@ public class PlayerTank : MonoBehaviour {
         Vector2 movementDirection = movementCtrl.ReadValue<Vector2>();
         rigidbody.AddRelativeForce(new Vector3(Vector3.forward.x, 0, Vector3.forward.z) * movementDirection.y * speed);
 
-        Vector3 localVelocity = transform.InverseTransformDirection(rigidbody.velocity);
+        Vector3 localVelocity = transform.InverseTransformDirection(rigidbody.linearVelocity);
         localVelocity.x = 0;
-        rigidbody.velocity = transform.TransformDirection(localVelocity);
+        rigidbody.linearVelocity = transform.TransformDirection(localVelocity);
 
         Quaternion currentRotation = transform.rotation;
         Vector3 rot = currentRotation.eulerAngles;
