@@ -53,7 +53,7 @@ public class PlayerTank : MonoBehaviour {
 
     void BarrelRotate() {
         //Debug.Log(barrelDirection);
-
+        Debug.Log(barrelDirection);
         if (barrelDirection.x > 0 || barrelDirection.x<0) {
             float turretCurrentRotation = turret.transform.localRotation.y + barrelDirection.x;
             float turretNewRot = Mathf.Clamp((turretCurrentRotation + barrelDirection.x) * turretSensitivity, -90, 90);

@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "TankControls",
     "maps": [
         {
@@ -11,7 +12,8 @@
                     "id": "635d034a-6886-4e24-8592-ae4362702998",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "TankBarrel",
@@ -19,7 +21,8 @@
                     "id": "3f593670-486b-4ae4-aef5-493fa7ab5b20",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "Hold"
+                    "interactions": "Hold",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -93,6 +96,17 @@
                     "name": "",
                     "id": "34f93d37-5866-40cc-a8f0-14b93aa1c6d2",
                     "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TankBarrel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "85672adf-0002-4813-aff8-7567ce2a16e7",
+                    "path": "<Pointer>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
